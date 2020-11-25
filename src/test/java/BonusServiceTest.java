@@ -40,9 +40,9 @@ class BonusServiceTest {
   void shouldCalculateForUnregisteredAndWithoutLimit() {
     BonusService service = new BonusService();
     // подготавливаем данные;
-    long amount = 100_000;
+    long amount = 100_000_60;
     boolean registered = false;
-    long expected = 30;
+    long expected = 500;
 
     //вызов целевого метода;
     long actual = service.calculate(amount, registered);
@@ -55,7 +55,20 @@ class BonusServiceTest {
     // подготавливаем данные;
     long amount = 100_000_000;
     boolean registered = false;
-    long expected = 500_00;
+    long expected = 500;
+
+    //вызов целевого метода;
+    long actual = service.calculate(amount, registered);
+
+    assertEquals(expected, actual);
+  }
+  @org.junit.jupiter.api.Test
+  void shouldCalculateForMiddleAmountAndRegisteredAndMiddleLimit() {
+    BonusService service = new BonusService();
+    // подготавливаем данные;
+    long amount = 1_000_600;
+    boolean registered = true;
+    long expected = 300;
 
     //вызов целевого метода;
     long actual = service.calculate(amount, registered);
